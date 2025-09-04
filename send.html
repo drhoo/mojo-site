@@ -8,21 +8,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
- <header class="site-header">
-  <div class="site-brand">mojo</div>
-</header>
+  <header class="site-header">
+    <div class="site-brand">mojo</div>
+  </header>
 
   <main class="wrap">
     <h1 class="page-title">Send Mojo</h1>
     <p class="intro">Say thanks to someone who made your day better. It only takes a moment.</p>
 
-    <form action="#" method="POST">
+    <form class="mojo-form" action="#" method="POST">
       <label for="mojo-id">Mojo ID</label>
       <input type="text" id="mojo-id" name="mojo-id" placeholder="e.g. MJO-7D4-82Q" required />
 
-      <label for="your-name">Your Name <span style="color: #888;">(optional)</span></label>
-      <input type="text" id="your-name" name="your-name" placeholder="e.g. Chris from Table 4" />
+      <label for="your-name">Your Name <span class="optional">(optional)</span></label>
+      <input type="text" id="your-name" name="your-name" placeholder="e.g. Alex from Table 4" />
 
       <label for="message">Your Message</label>
       <textarea id="message" name="message" placeholder="What did they do well?" required></textarea>
