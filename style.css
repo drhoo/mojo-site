@@ -190,3 +190,19 @@ body {
   background-color: #08307a;
 }
 
+a button {
+  background-color: #0a2b6b;
+  color: white;
+  font-size: 1em;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+a button:hover {
+  background-color: #08307a;
+}
+
+
