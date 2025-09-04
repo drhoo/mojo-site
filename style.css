@@ -115,3 +115,23 @@ body {
   color: #666;
   margin-top: 8px;
 }
+
+/* Header container */
+.site-header {
+  background-color: #0a2b6b; /* dark blue monopoly style */
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* center the logo text */
+  padding: 16px 24px;
+}
+
+/* Text logo / brand */
+.site-brand {
+  font-size: 2em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-transform: lowercase;
+  line-height: 1;
+}
