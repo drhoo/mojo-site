@@ -135,3 +135,58 @@ body {
   text-transform: lowercase;
   line-height: 1;
 }
+
+.mojo-form {
+  text-align: left;
+  margin-top: 32px;
+}
+
+.mojo-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #0a2b6b;
+  font-size: 1em;
+}
+
+.mojo-form input,
+.mojo-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.mojo-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.mojo-form .optional {
+  font-weight: normal;
+  color: #888;
+  font-size: 0.9em;
+}
+
+.mojo-form button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background-color: #0a2b6b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mojo-form button:hover {
+  background-color: #08307a;
+}
+
