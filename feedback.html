@@ -1,0 +1,60 @@
+<!-- Mojo Feedback Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leave Feedback – Mojo</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="/images/mojo-header.png" alt="Mojo Logo" class="logo">
+    <div class="site-title">mojo</div>
+  </header>
+
+  <main class="wrap">
+    <h1>Say something nice</h1>
+    <p class="intro">Seen someone doing great work? Let them know – it means more than you think.</p>
+
+    <form method="POST" action="/api/submit-feedback">
+      <input type="hidden" name="tag" id="tag" />
+
+      <label for="yourName">Your name (optional)</label>
+      <input type="text" name="yourName" id="yourName" placeholder="Sam from Brisbane" />
+
+      <label for="theirName">Their name (or role)</label>
+      <input type="text" name="theirName" id="theirName" placeholder="Who impressed you?" />
+
+      <label for="message">Your message</label>
+      <textarea name="message" id="message" placeholder="What did they do well? Be kind and specific." required></textarea>
+
+      <button type="submit">Send your message 💌</button>
+    </form>
+  </main>
+
+  <footer class="footer-note">
+    Feedback is passed on directly. It's a good day to lift someone up.
+  </footer>
+
+  <script>
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const tag = params.get('tag');
+      if (!tag) return;
+
+      document.getElementById('tag').value = tag;
+
+      try {
+        const res = await fetch(`/api/get-tag?tag=${tag}`);
+        const data = await res.json();
+        if (data && data.success && data.name) {
+          document.getElementById('theirName').value = data.name;
+        }
+      } catch (err) {
+        console.warn('Could not fetch tag name:', err);
+      }
+    })();
+  </script>
+</body>
+</html>
