@@ -22,19 +22,22 @@
 <main class="wrap">
 
   <section class="message-form">
-    <h2>Say something nice</h2>
-    <form id="messageForm">
-      <label for="message">Your message</label><br>
-      <textarea id="message" name="message" required></textarea><br><br>
+<h1>Send a Mojo Message</h1>
+<p class="intro">Say thanks, leave feedback, or just send some good vibes to someone who's earned their mojo.</p>
 
-      <label for="name">Your name (optional)</label><br>
-      <input type="text" id="name" name="name"><br><br>
+<form action="/api/submit-message.js" method="POST" class="mojo-form">
+  <label for="senderName">Your Name</label>
+  <input type="text" id="senderName" name="senderName" required placeholder="e.g. Sam from Mojo Café" />
 
-      <label for="location">Your location (optional)</label><br>
-      <input type="text" id="location" name="location"><br><br>
+  <label for="recipientName">Their Name (or role)</label>
+  <input type="text" id="recipientName" name="recipientName" required placeholder="e.g. Taylor (barista)" />
 
-      <button type="submit">Send it!</button>
-    </form>
+  <label for="message">What would you like to say?</label>
+  <textarea id="message" name="message" required placeholder="Kind, specific, and genuine is best :)"></textarea>
+
+  <button type="submit">Send Message</button>
+</form>
+
 
     <div id="result" style="margin-top: 1em;"></div>
   </section>
