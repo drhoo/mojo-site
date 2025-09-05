@@ -8,11 +8,10 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
+
 <header class="site-header">
   <div class="site-brand">mojo</div>
 </header>
-
 
 <section class="hero">
   <img src="images/welcome.png" alt="Smiling café worker with coffee" class="hero-image">
@@ -20,78 +19,72 @@
   <p class="hero-subtext">A fresh way to recognise good work, and the people behind it.</p>
 </section>
 
-  
+<main class="wrap">
 
-  <main class="wrap">
+  <section class="message-form">
+    <h2>Say something nice</h2>
+    <form id="messageForm">
+      <label for="message">Your message</label><br>
+      <textarea id="message" name="message" required></textarea><br><br>
 
+      <label for="name">Your name (optional)</label><br>
+      <input type="text" id="name" name="name"><br><br>
 
-<!-- Mojo.Spot — Public Message Form -->
-<div class="wrap">
-  <h2>Say something nice</h2>
-  <form id="messageForm">
-    <label for="message">Your message</label><br>
-    <textarea id="message" name="message" required></textarea><br><br>
+      <label for="location">Your location (optional)</label><br>
+      <input type="text" id="location" name="location"><br><br>
 
-    <label for="name">Your name (optional)</label><br>
-    <input type="text" id="name" name="name"><br><br>
+      <button type="submit">Send it!</button>
+    </form>
 
-    <label for="location">Your location (optional)</label><br>
-    <input type="text" id="location" name="location"><br><br>
+    <div id="result" style="margin-top: 1em;"></div>
+  </section>
 
-    <button type="submit">Send it!</button>
-  </form>
+  <script>
+    const form = document.getElementById('messageForm');
+    const result = document.getElementById('result');
 
-  <div id="result" style="margin-top: 1em;"></div>
-</div>
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-<script>
-  const form = document.getElementById('messageForm');
-  const result = document.getElementById('result');
+      const message = document.getElementById('message').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const location = document.getElementById('location').value.trim();
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+      const res = await fetch('/api/submit-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, name, location })
+      });
 
-    const message = document.getElementById('message').value.trim();
-    const name = document.getElementById('name').value.trim();
-    const location = document.getElementById('location').value.trim();
-
-    const res = await fetch('/api/submit-message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, name, location })
+      const data = await res.json();
+      if (data.success) {
+        result.innerHTML = '✅ Message sent! Thank you.';
+        form.reset();
+      } else {
+        result.innerHTML = `❌ ${data.message || 'Something went wrong.'}`;
+      }
     });
+  </script>
 
-    const data = await res.json();
-    if (data.success) {
-      result.innerHTML = '✅ Message sent! Thank you.';
-      form.reset();
-    } else {
-      result.innerHTML = `❌ ${data.message || 'Something went wrong.'}`;
-    }
-  });
-</script>
+  <h1 class="page-title">The Mojo System</h1>
+  <p class="intro">Mojo is a trust signal. A reputation marker. A quiet way to say: "This person works well."</p>
 
+  <p class="pitch">
+    From tradies to teachers, cleaners to carers — the Mojo system lets anyone carry a simple mark of trust. 
+    No reviews, no ratings. Just a clear, respectful signal: <strong>I do my job, and I do it well.</strong>
+  </p>
 
+  <div class="badge-box">
+    <div class="badge">MJO-7D4-82Q</div>
+    <p class="badge-caption">Example Mojo ID</p>
+  </div>
 
-    
-    <h1 class="page-title">The Mojo System</h1>
-    <p class="intro">Mojo is a trust signal. A reputation marker. A quiet way to say: "This person works well."</p>
-    
-    <p class="pitch">
-      From tradies to teachers, cleaners to carers — the Mojo system lets anyone carry a simple mark of trust. 
-      No reviews, no ratings. Just a clear, respectful signal: <strong>I do my job, and I do it well.</strong>
-    </p>
+  <p class="cta">Coming soon: a quiet revolution in work. Backed by trust, not algorithms.</p>
+</main>
 
-    <div class="badge-box">
-      <div class="badge">MJO-7D4-82Q</div>
-      <p class="badge-caption">Example Mojo ID</p>
-    </div>
+<footer class="site-footer">
+  &copy; 2025 Mojo.ID &nbsp;·&nbsp; Made in Australia · Built on trust.
+</footer>
 
-    <p class="cta">Coming soon: a quiet revolution in work. Backed by trust, not algorithms.</p>
-  </main>
-
-  <footer class="site-footer">
-    &copy; 2025 Mojo.ID &nbsp;·&nbsp; Made in Australia · Built on trust.
-  </footer>
 </body>
 </html>
