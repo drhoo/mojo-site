@@ -20,8 +20,60 @@
   <p class="hero-subtext">A fresh way to recognise good work, and the people behind it.</p>
 </section>
 
+  
 
   <main class="wrap">
+
+
+<!-- Mojo.Spot — Public Message Form -->
+<div class="wrap">
+  <h2>Say something nice</h2>
+  <form id="messageForm">
+    <label for="message">Your message</label><br>
+    <textarea id="message" name="message" required></textarea><br><br>
+
+    <label for="name">Your name (optional)</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="location">Your location (optional)</label><br>
+    <input type="text" id="location" name="location"><br><br>
+
+    <button type="submit">Send it!</button>
+  </form>
+
+  <div id="result" style="margin-top: 1em;"></div>
+</div>
+
+<script>
+  const form = document.getElementById('messageForm');
+  const result = document.getElementById('result');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const message = document.getElementById('message').value.trim();
+    const name = document.getElementById('name').value.trim();
+    const location = document.getElementById('location').value.trim();
+
+    const res = await fetch('/api/submit-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, name, location })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      result.innerHTML = '✅ Message sent! Thank you.';
+      form.reset();
+    } else {
+      result.innerHTML = `❌ ${data.message || 'Something went wrong.'}`;
+    }
+  });
+</script>
+
+
+
+    
     <h1 class="page-title">The Mojo System</h1>
     <p class="intro">Mojo is a trust signal. A reputation marker. A quiet way to say: "This person works well."</p>
     
