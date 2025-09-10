@@ -6,16 +6,28 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// Helper: Sanitize ID (0→O, 1→I, uppercase)
+function sanitizeTagId(raw) {
+  return raw.toUpperCase().replace(/0/g, 'O').replace(/1/g, 'I');
+}
+
+// Valid Pebble ID format: ABC-DEF-GHI using safe 34-char set
+const isValidPebbleId = (tag) => /^[A-Z2-9]{3}-[A-Z2-9]{3}-[A-Z2-9]{3}$/.test(tag);
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { tag_id, sender_name, message } = req.body;
+  const { tag_id: rawTagId, sender_name, message } = req.body;
 
-  // Validate tag format: MJO-XXX-XXX with 34 safe chars
-  const validTag = /^MJO-[A-Z2-9]{3}-[A-Z2-9]{3}$/.test(tag_id);
-  if (!validTag) {
+  if (!rawTagId || typeof rawTagId !== 'string') {
+    return res.status(400).json({ error: 'Tag ID is required.' });
+  }
+
+  const tag_id = sanitizeTagId(rawTagId);
+
+  if (!isValidPebbleId(tag_id)) {
     return res.status(400).json({ error: 'Invalid tag format.' });
   }
 
