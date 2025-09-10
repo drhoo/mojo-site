@@ -1,101 +1,53 @@
-<!-- Mojo.ID — Trust Starts Here -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mojo.ID — Trust Starts Here</title>
+  <title>Mojo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header class="site-header">
-  <div class="site-brand">mojo</div>
-</header>
+  <header class="site-header">
+    <div class="site-brand">mojo</div>
+  </header>
 
-<!-- Standard nav added below header -->
-<nav class="site-nav">
-  <a href="index.html">Home</a>
-  <a href="how-it-works.html">How it Works</a>
-  <a href="privacy.html">Privacy</a>
-</nav>
+  <!-- Top navigation -->
+  <nav class="site-nav">
+    <div class="wrap">
+      <a href="/">Home</a> |
+      <a href="/about.html">About</a> |
+      <a href="/send.html">Send a Message</a>
+    </div>
+  </nav>
 
-<section class="hero">
-  <img src="images/welcome.png" alt="Smiling café worker with coffee" class="hero-image">
-  <h1 class="hero-text">Welcome to Mojo</h1>
-  <p class="hero-subtext">A fresh way to recognise good work, and the people behind it.</p>
-</section>
+  <main class="wrap">
+    <section class="hero">
+      <img src="/images/welcome.png" alt="Smiling worker" class="hero-image" />
+      <div class="hero-text">Welcome to Mojo</div>
+      <div class="hero-subtext">Feedback made simple, kind, and real.</div>
+    </section>
 
-<main class="wrap">
+    <p class="intro">If you scanned a badge, wristband, receipt, or saw a Mojo code, you’re in the right place.</p>
 
-  <section class="message-form">
-    <h1>Send a Mojo Message</h1>
-    <p class="intro">Say thanks, leave feedback, or just send some good vibes to someone who's earned their mojo.</p>
+    <p class="pitch">
+      Mojo is a quiet way to say thanks, share feedback, or highlight someone who made your day better.
+      Whether you're at a café, a hospital, or a hair salon — just enter their 6-character code and leave a kind word.
+    </p>
 
-    <form id="messageForm" action="/api/submit-message.js" method="POST" class="mojo-form">
-      <label for="senderName">Your Name</label>
-      <input type="text" id="senderName" name="senderName" required placeholder="e.g. Sam from Mojo Café" />
+    <div class="badge-box">
+      <div class="badge">MJO-7D4-82Q</div>
+      <div class="badge-caption">Example worker code</div>
+    </div>
 
-      <label for="recipientName">Their Name (or role)</label>
-      <input type="text" id="recipientName" name="recipientName" required placeholder="e.g. Taylor (barista)" />
+    <div class="cta">Got a code? Tap below to start.</div>
+    <a href="/send.html"><button>Send a message</button></a>
+  </main>
 
-      <label for="message">What would you like to say?</label>
-      <textarea id="message" name="message" required placeholder="Kind, specific, and genuine is best :)"></textarea>
-
-      <button type="submit">Send Message</button>
-    </form>
-
-    <div id="result" style="margin-top: 1em;"></div>
-  </section>
-
-  <script>
-    const form = document.getElementById('messageForm');
-    const result = document.getElementById('result');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const senderName = document.getElementById('senderName').value.trim();
-      const recipientName = document.getElementById('recipientName').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      const res = await fetch('/api/submit-message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ senderName, recipientName, message })
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        result.innerHTML = '✅ Message sent! Thank you.';
-        form.reset();
-      } else {
-        result.innerHTML = `❌ ${data.message || 'Something went wrong.'}`;
-      }
-    });
-  </script>
-
-  <h1 class="page-title">The Mojo System</h1>
-  <p class="intro">Mojo is a trust signal. A reputation marker. A quiet way to say: "This person works well."</p>
-
-  <p class="pitch">
-    From tradies to teachers, cleaners to carers — the Mojo system lets anyone carry a simple mark of trust. 
-    No reviews, no ratings. Just a clear, respectful signal: <strong>I do my job, and I do it well.</strong>
-  </p>
-
-  <div class="badge-box">
-    <div class="badge">MJO-7D4-82Q</div>
-    <p class="badge-caption">Example Mojo ID</p>
-  </div>
-
-  <p class="cta">Coming soon: a quiet revolution in work. Backed by trust, not algorithms.</p>
-</main>
-
-<footer class="site-footer">
-  &copy; 2025 Mojo.ID &nbsp;·&nbsp; Made in Australia · Built on trust.
-  <br>
-  <a href="how-it-works.html">How it Works</a> · <a href="privacy.html">Privacy</a>
-</footer>
+  <footer class="site-footer">
+    <p><a href="/how-it-works.html">How it works</a> • <a href="/privacy.html">Privacy</a></p>
+    <p>&copy; 2025 Mojo.Spot — Made in Australia</p>
+  </footer>
 
 </body>
 </html>
