@@ -6,6 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Send Mojo – Mojo.Spot</title>
   <link rel="stylesheet" href="style.css" />
+  <script>
+    // Utility: Replace 0/1 with O/I and uppercase all letters
+    function sanitizeMojoId(id) {
+      return id.toUpperCase().replace(/0/g, 'O').replace(/1/g, 'I');
+    }
+
+    // On load: Prefill ID from ?id= query
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const rawId = urlParams.get('id');
+      if (rawId) {
+        const cleanedId = sanitizeMojoId(rawId);
+        document.getElementById('mojo-id').value = cleanedId;
+      }
+
+      // Live sanitize as user types
+      const idInput = document.getElementById('mojo-id');
+      idInput.addEventListener('input', () => {
+        const cursor = idInput.selectionStart;
+        idInput.value = sanitizeMojoId(idInput.value);
+        idInput.setSelectionRange(cursor, cursor);
+      });
+    });
+  </script>
 </head>
 <body>
   <header class="site-header">
@@ -18,7 +42,7 @@
 
     <form class="mojo-form" action="#" method="POST">
       <label for="mojo-id">Mojo ID</label>
-      <input type="text" id="mojo-id" name="mojo-id" placeholder="e.g. MJO-7D4-82Q" required />
+      <input type="text" id="mojo-id" name="mojo-id" placeholder="e.g. MJO-ABC-123" required />
 
       <label for="your-name">Your Name <span class="optional">(optional)</span></label>
       <input type="text" id="your-name" name="your-name" placeholder="e.g. Alex from Table 4" />
