@@ -72,8 +72,8 @@ main.wrap section {
 
   
 .site-nav a:not(:first-child)::before {
-  content: "|";
-  padding: 0 12px;
+  content: "| ";
+  padding: 0 0px;
   position: absolute;
   left: 0;
   color: #0a2b6b;
