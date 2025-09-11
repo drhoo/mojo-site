@@ -268,11 +268,15 @@ a button:hover {
   display: block;
 }
 
-.logo-link img {
-  display: block;
+.brand-wrap {
+  display: flex;
+  align-items: center;
 }
 
-
-
-
+.logo {
+  width: 48px;
+  height: auto;
+  margin-right: 12px;
+  display: block; /* fixes phantom alt text */
+}
 
