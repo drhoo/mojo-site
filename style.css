@@ -44,6 +44,7 @@ main.wrap section {
   height: auto;
   margin-right: 12px;
   display: block;
+  align-items: center;
 }
 
 .site-title {
