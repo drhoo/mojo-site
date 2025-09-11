@@ -55,6 +55,10 @@ main.wrap section {
   text-transform: lowercase;
 }
 
+.logo {
+  width: 150px;
+}
+
 
 /* ---------- Nav ---------- */
 .site-nav {
