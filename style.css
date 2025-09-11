@@ -51,6 +51,7 @@ main.wrap section {
   font-size: 1.6em;
   font-weight: 700;
   color: white;
+  align-items: center;
 }
 
 /* ---------- Nav ---------- */
