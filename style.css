@@ -53,6 +53,14 @@ main.wrap section {
   color:  #0a2b6b;
 }
 
+.site-nav a {
+  color: #0a2b6b;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95em;
+  position: relative;
+  padding: 0 8px;
+}
 
 .site-nav a:not(:first-child)::before {
   content: "|";
