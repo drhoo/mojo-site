@@ -53,6 +53,17 @@ main.wrap section {
   color:  #0a2b6b;
 }
 
+
+.site-nav a:not(:first-child)::before {
+  content: "|";
+  position: absolute;
+  left: 0;
+  color: #0a2b6b;
+}
+
+
+
+
 .site-title {
   font-size: 1.6em;
   font-weight: 700;
