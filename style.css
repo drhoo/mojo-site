@@ -77,7 +77,10 @@ main.wrap section {
   color: #0a2b6b;
 }
 
-
+/* Remove left border from the first link */
+.site-nav a:first-child {
+  border-left: none;
+}
 
 
 .site-title {
