@@ -25,6 +25,7 @@ main.wrap section {
 .site-header {
   background-color: #0a2b6b;
   color: white;
+  align-items: center;
   padding: 12px 0; /* reduced from 16px 24px */
 }
 
