@@ -64,8 +64,8 @@ main.wrap section {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95em;
-/*  position: relative; */
- display: inline-block;  
+  position: relative; 
+
   padding: 0 8px;
 }
 
@@ -73,6 +73,7 @@ main.wrap section {
   
 .site-nav a:not(:first-child)::before {
   content: "|";
+  padding: 0 12px;
   position: absolute;
   left: 0;
   color: #0a2b6b;
