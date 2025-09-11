@@ -22,37 +22,39 @@ main.wrap section {
 }
 
 /* ---------- Header ---------- */
+/* Centered header layout for How It Works */
 .site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #0a2b6b;
   color: white;
-  align-items: center;
-  padding: 12px 0; /* reduced from 16px 24px */
+  padding: 16px 0;
 }
 
 .brand-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 24px;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.logo {
-  width: 48px;
-  height: auto;
-  margin-right: 12px;
-  display: block;
-  align: center;
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 0;
 }
 
 .site-title {
   font-size: 1.6em;
   font-weight: 700;
   color: white;
-  text-align: center;
+  text-transform: lowercase;
 }
+
 
 /* ---------- Nav ---------- */
 .site-nav {
