@@ -1,4 +1,6 @@
-/* Mojo.ID – Style Sheet */
+/* Mojo.Spot – Unified Style Sheet */
+
+/* ---------- Base ---------- */
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   margin: 0;
@@ -7,6 +9,7 @@ body {
   color: #222;
 }
 
+/* ---------- Layout ---------- */
 .wrap {
   max-width: 640px;
   margin: 40px auto;
@@ -14,25 +17,93 @@ body {
   text-align: center;
 }
 
+main.wrap section {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+/* ---------- Header ---------- */
 .site-header {
-  background: #0a2b6b;
+  background-color: #0a2b6b;
   color: white;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px 24px;
+  flex-wrap: wrap;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
   width: 48px;
-  height: 48px;
+  height: auto;
   margin-right: 12px;
+  display: block;
 }
 
 .site-title {
   font-size: 1.6em;
   font-weight: 700;
+  color: white;
 }
 
+/* ---------- Nav ---------- */
+.site-nav {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.site-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  text-decoration: underline;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fefefe;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.hero-logo {
+  max-width: 180px;
+  margin: 32px auto;
+  display: block;
+}
+
+.hero-text {
+  margin-top: 24px;
+  font-size: 2em;
+  color: #333;
+}
+
+.hero-subtext {
+  font-size: 1.2em;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* ---------- Typography ---------- */
 .page-title {
   font-size: 2em;
   margin-top: 24px;
@@ -43,6 +114,7 @@ body {
   font-size: 1.2em;
   margin-top: 12px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .pitch {
@@ -52,6 +124,7 @@ body {
   margin-bottom: 32px;
 }
 
+/* ---------- Badges ---------- */
 .badge-box {
   background: #eef3ff;
   padding: 20px;
@@ -76,6 +149,7 @@ body {
   margin-top: 8px;
 }
 
+/* ---------- CTA ---------- */
 .cta {
   font-weight: 600;
   font-size: 1em;
@@ -83,68 +157,40 @@ body {
   margin-top: 32px;
 }
 
-.site-footer {
-  text-align: center;
-  font-size: 0.9em;
-  color: #888;
-  padding: 32px 16px;
-}
-
-.hero {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #fefefe;
-}
-
-.hero-image {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.hero-text {
-  margin-top: 24px;
-  font-size: 2em;
-  color: #333;
-}
-
-.hero-subtext {
-  font-size: 1.2em;
-  color: #666;
-  margin-top: 8px;
-}
-
-/* Header container */
-.site-header {
-  background-color: #0a2b6b; /* dark blue monopoly style */
-  display: flex;
-  align-items: center;
-  justify-content: center;  /* center the logo text */
-  padding: 16px 24px;
-}
-
-/* Text logo / brand */
-.site-brand {
-  font-size: 2em;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+/* ---------- Buttons ---------- */
+button,
+a button {
+  background-color: #0a2b6b;
   color: white;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  text-transform: lowercase;
-  line-height: 1;
+  font-size: 1em;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s ease;
 }
 
+button:hover,
+a button:hover {
+  background-color: #08307a;
+}
+
+/* ---------- Form ---------- */
 .mojo-form {
+  background: #f8faff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: 32px auto;
   text-align: left;
-  margin-top: 32px;
 }
 
 .mojo-form label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
+  margin-top: 16px;
+  font-weight: bold;
   color: #0a2b6b;
   font-size: 1em;
 }
@@ -153,6 +199,7 @@ body {
 .mojo-form textarea {
   width: 100%;
   padding: 12px;
+  margin-top: 6px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -162,7 +209,7 @@ body {
 }
 
 .mojo-form textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
@@ -173,110 +220,23 @@ body {
 }
 
 .mojo-form button {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  background-color: #0a2b6b;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.mojo-form button:hover {
-  background-color: #08307a;
-}
-
-a button {
-  background-color: #0a2b6b;
-  color: white;
-  font-size: 1em;
-  padding: 12px 16px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 12px;
-}
-
-a button:hover {
-  background-color: #08307a;
-}
-
-.mojo-form {
-  background: #f8faff;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  max-width: 500px;
-  margin: 24px auto;
-  text-align: left;
-}
-
-.mojo-form label {
-  display: block;
-  margin-top: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.mojo-form input,
-.mojo-form textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-top: 6px;
-  box-sizing: border-box;
-}
-
-.mojo-form textarea {
-  min-height: 120px;
-}
-
-.mojo-form button {
   margin-top: 24px;
   background: #0a4f8a;
-  color: white;
   padding: 12px 24px;
   font-size: 16px;
-  border: none;
   border-radius: 12px;
-  cursor: pointer;
   width: 100%;
-  transition: background 0.3s ease;
 }
 
 .mojo-form button:hover {
   background: #063963;
 }
 
-.intro {
+/* ---------- Footer ---------- */
+.site-footer {
   text-align: center;
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 24px;
+  font-size: 0.9em;
+  color: #888;
+  padding: 32px 16px;
+  margin-top: 40px;
 }
-
-/* Hero logo style for about.html */
-.hero-logo {
-  max-width: 180px;
-  margin: 32px auto;
-  display: block;
-}
-
-.brand-wrap {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  width: 48px;
-  height: auto;
-  margin-right: 12px;
-  display: block; /* fixes phantom alt text */
-}
-
