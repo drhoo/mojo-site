@@ -1,4 +1,4 @@
-/* Mojo.Spot – Unified Style Sheet */
+/* Mojo.Spot – Unified Style Sheet (Fixed & Updated) */
 
 /* ---------- Base ---------- */
 body {
@@ -26,16 +26,17 @@ main.wrap section {
 .site-header {
   background-color: #0a2b6b;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  flex-wrap: wrap;
+  padding: 12px 0; /* reduced from 16px 24px */
 }
 
 .brand-wrap {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -78,6 +79,8 @@ main.wrap section {
 }
 
 .hero-image {
+  display: block;
+  margin: 0 auto;
   width: 100%;
   max-width: 420px;
   height: auto;
@@ -239,4 +242,9 @@ a button:hover {
   color: #888;
   padding: 32px 16px;
   margin-top: 40px;
+}
+
+.site-footer p::after {
+  content: " | Made in Australia. Built on trust.";
+  color: #aaa;
 }
