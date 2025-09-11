@@ -50,6 +50,7 @@ main.wrap section {
   justify-content: center;
   gap: 16px;
   margin-top: 0;
+  color:  #0a2b6b;
 }
 
 .site-title {
