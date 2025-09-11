@@ -48,7 +48,7 @@ main.wrap section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 20px;
   margin-top: 0;
   color:  #0a2b6b;
 }
