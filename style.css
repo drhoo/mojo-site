@@ -29,7 +29,11 @@ main.wrap section {
   align-items: center;
   background-color: #0a2b6b;
   color: white;
-  padding: 16px 0;
+  
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
 }
 
 .brand-wrap {
