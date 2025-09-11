@@ -261,5 +261,13 @@ a button:hover {
   margin-bottom: 24px;
 }
 
+/* Hero logo style for about.html */
+.hero-logo {
+  max-width: 180px;
+  margin: 32px auto;
+  display: block;
+}
+
+
 
 
