@@ -70,6 +70,34 @@ main.wrap section {
 }
 
 
+.site-nav a:hover,
+.site-nav a:focus {
+  text-decoration: underline; /* optional, keeps your existing hover style */
+}
+
+/* Target the divider immediately after a hovered link */
+.site-nav a:hover + .divider {
+  color: #08307a;      /* darker shade on hover */
+}
+
+.site-nav a:hover ~ .divider {
+  color: #0a2b6b;      /* reset other dividers */
+}
+
+/* Optional: also highlight the divider before the hovered link */
+.site-nav a:hover {
+  /* find previous sibling divider */
+}
+
+.site-nav .divider {
+  color: #0a2b6b;
+  transition: color 0.2s ease;
+}
+
+
+
+
+
 
 
 
