@@ -61,15 +61,18 @@ main.wrap section {
 .site-nav a {
   color: #0a2b6b;
   text-decoration: none;
-  padding: 0 12px;      /* space around the text */
+  padding: 0 12px;
   display: inline-block;
+  position: relative;
 }
 
-/* Add left border for all but the first link */
-.site-nav a + a {
-  border-left: 1px solid #0a2b6b;
-  margin-left: 12px;     /* space between text and divider */
-  padding-left: 12px;    /* extra space so divider isn't too close to text */
+/* Add separator between links using pseudo-element on all but last link */
+.site-nav a:not(:last-child)::after {
+  content: "|";
+  margin-left: 12px;       /* space between text and bar */
+  margin-right: 12px;      /* space after the bar */
+  color: #0a2b6b;
+  font-weight: normal;      /* match bar thickness */
 }
 
 
