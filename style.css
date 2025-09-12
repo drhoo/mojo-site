@@ -53,23 +53,22 @@ main.wrap section {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;  /* spacing handled by dividers */
+  gap: 0;  /* gaps handled by divider padding */
+  font-weight: 600;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-/* Add divider after each nav-item except the last */
-.nav-item:not(:last-child)::after {
-  content: "|";
-  display: inline-block;
-  margin: 0 12px;   /* equal spacing on both sides */
+.site-nav a {
   color: #0a2b6b;
-  font-weight: normal;  /* bar thinner than bold link */
+  text-decoration: none;
+  padding: 0 8px;
 }
+
+.divider {
+  color: #0a2b6b;
+  padding: 0 8px;  /* equal space on left and right */
+  font-weight: normal; /* thin divider */
+}
+
 
 
 
