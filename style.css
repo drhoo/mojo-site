@@ -45,11 +45,49 @@ main.wrap section {
 }
 
 /* ---------- New Nav (below header) ---------- */
+
+/* ---------- Fixed Site Nav ---------- */
+.site-nav {
+  display: flex;
+  justify-content: center;       /* center the nav links */
+  align-items: center;           /* vertically align text and separators */
+  margin: 24px 0;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.site-nav a {
+  position: relative;
+  padding: 0 12px;               /* horizontal spacing for link */
+  color: #0a2b6b;
+  text-decoration: none;
+}
+
+.site-nav a + a::before {
+  content: "|";                   /* vertical divider */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);  /* center the divider both horizontally & vertically */
+  color: #0a2b6b;
+}
+
+
+
+
+
+
+
+
+
+
+/*
 .site-nav {
   display: flex;
   justify-content: center;
   gap: 24px; /* spacing between links */
-  margin: 24px 0;
+ /* margin: 24px 0;
   font-size: 1em;
   font-weight: 600;
   color: #0a2b6b;
@@ -62,8 +100,10 @@ main.wrap section {
   position: relative;
   padding: 0 12px;
 }
+*/
 
 /* Add vertical separator bar before all except the first */
+/*
 .site-nav a:not(:first-child)::before {
   content: "|";
   color: #0a2b6b;
@@ -72,7 +112,7 @@ main.wrap section {
   transform: translateX(-50%);
 }
 
-
+*/
 
 
 
