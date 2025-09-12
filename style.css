@@ -53,27 +53,24 @@ main.wrap section {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 24px 0;
-  font-size: 1em;
-  font-weight: 600;
+  gap: 0;  /* spacing handled by dividers */
 }
 
-.site-nav a {
-  color: #0a2b6b;
-  text-decoration: none;
-  padding: 0 12px;
-  display: inline-block;
+.nav-item {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
-/* Add separator between links using pseudo-element on all but last link */
-.site-nav a:not(:last-child)::after {
+/* Add divider after each nav-item except the last */
+.nav-item:not(:last-child)::after {
   content: "|";
-  margin-left: 12px;       /* space between text and bar */
-  margin-right: 12px;      /* space after the bar */
+  display: inline-block;
+  margin: 0 12px;   /* equal spacing on both sides */
   color: #0a2b6b;
-  font-weight: normal;      /* match bar thickness */
+  font-weight: normal;  /* bar thinner than bold link */
 }
+
 
 
 
