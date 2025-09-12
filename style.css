@@ -44,6 +44,41 @@ main.wrap section {
   margin-bottom: 12px;
 }
 
+/* ---------- New Nav (below header) ---------- */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px; /* spacing between links */
+  margin: 24px 0;
+  font-size: 1em;
+  font-weight: 600;
+  color: #0a2b6b;
+  text-align: center;
+}
+
+.site-nav a {
+  color: #0a2b6b;
+  text-decoration: none;
+  position: relative;
+  padding: 0 12px;
+}
+
+/* Add vertical separator bar before all except the first */
+.site-nav a:not(:first-child)::before {
+  content: "|";
+  color: #0a2b6b;
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+}
+
+
+
+
+
+
+
+/* OLD site nav styling, not good.
 .site-nav {
   display: flex;
   flex-wrap: wrap;
@@ -52,12 +87,6 @@ main.wrap section {
   margin-top: 0;
   color:  #0a2b6b;
 }
-
-
-
-
-
-
 
 .site-nav a {
   color: #0a2b6b;
@@ -83,6 +112,7 @@ main.wrap section {
 .site-nav a:first-child {
   border-left: none;
 }
+*/
 
 
 .site-title {
