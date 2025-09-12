@@ -53,48 +53,41 @@ main.wrap section {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;  /* gaps handled by divider padding */
+  gap: 0;                 /* spacing handled by divider padding */
   font-weight: 600;
+  font-size: 1em;
 }
 
 .site-nav a {
   color: #0a2b6b;
   text-decoration: none;
   padding: 0 8px;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  color: #08307a;          /* link text highlight on hover */
+  text-decoration: underline;
 }
 
 .divider {
   color: #0a2b6b;
-  padding: 0 8px;  /* equal space on left and right */
-  font-weight: normal; /* thin divider */
-}
-
-
-.site-nav a:hover,
-.site-nav a:focus {
-  text-decoration: underline; /* optional, keeps your existing hover style */
-}
-
-/* Target the divider immediately after a hovered link */
-.site-nav a:hover + .divider {
-  color: #08307a;      /* darker shade on hover */
-}
-
-.site-nav a:hover ~ .divider {
-  color: #0a2b6b;      /* reset other dividers */
-}
-
-/* Optional: also highlight the divider before the hovered link */
-.site-nav a:hover {
-  /* find previous sibling divider */
-}
-
-.site-nav .divider {
-  color: #0a2b6b;
+  padding: 0 8px;          /* equal space on both sides of the bar */
+  font-weight: normal;     /* thinner than bold links */
   transition: color 0.2s ease;
 }
 
+/* Highlight the divider to the right of hovered link */
+.site-nav a:hover + .divider {
+  color: #08307a;
+}
 
+/* Optional: highlight divider to the left of hovered link */
+.site-nav a:hover ~ .divider:first-of-type {
+  color: #08307a;
+}
 
 
 
