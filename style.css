@@ -49,6 +49,7 @@ main.wrap section {
 /* ---------- Fixed Site Nav ---------- */
 
 
+/* Site Nav Container */
 .site-nav {
   display: flex;
   justify-content: center;
@@ -58,6 +59,7 @@ main.wrap section {
   font-size: 1em;
 }
 
+/* Links */
 .site-nav a {
   color: #0a2b6b;
   text-decoration: none;
@@ -66,28 +68,32 @@ main.wrap section {
   transition: color 0.2s ease;
 }
 
-.site-nav a:hover,
-.site-nav a:focus {
-  color: #08307a;          /* link text highlight on hover */
-  text-decoration: underline;
-}
-
+/* Dividers */
 .divider {
   color: #0a2b6b;
-  padding: 0 8px;          /* equal space on both sides of the bar */
-  font-weight: normal;     /* thinner than bold links */
+  padding: 0 8px;          /* equal space on both sides */
+  font-weight: normal;      /* thinner than bold links */
   transition: color 0.2s ease;
 }
 
-/* Highlight the divider to the right of hovered link */
+/* Hover effect on links */
+.site-nav a:hover,
+.site-nav a:focus {
+  color: #08307a;           /* darker blue */
+  text-decoration: underline;
+}
+
+/* Hover effect on divider to the right */
 .site-nav a:hover + .divider {
   color: #08307a;
 }
 
-/* Optional: highlight divider to the left of hovered link */
+/* Hover effect on divider to the left */
+.site-nav a:hover ~ .divider,
 .site-nav a:hover ~ .divider:first-of-type {
   color: #08307a;
 }
+
 
 
 
