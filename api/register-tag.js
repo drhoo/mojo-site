@@ -1,8 +1,16 @@
-// /api/register-tag.js
+// /pages/api/register-tag.js
 
+import { Redis } from '@upstash/redis';
 import { resend } from '@/lib/resend';
-import { db } from '@/lib/db'; // Supabase or Upstash wrapper
-import { generateMagicLink } from '@/lib/magic'; // We'll define this if needed
+
+// Upstash client
+const kv = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN
+});
+
+// Validate tag format: MOJ-XXX-XXX
+const isValidMojoTag = (tag) => /^MOJ-[A-Z2-9]{3}-[A-Z2-9]{3}$/.test(tag);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -11,48 +19,41 @@ export default async function handler(req, res) {
 
   const { tag, email, name } = req.body;
 
-  // Basic validation
-  if (!/^MOJ-[A-Z0-9]{3}-[A-Z0-9]{3}$/.test(tag)) {
+  // Input validation
+  if (!tag || !isValidMojoTag(tag)) {
     return res.status(400).json({ message: 'Invalid tag format.' });
   }
 
-  if (!email || !email.includes('@')) {
+  if (!email || typeof email !== 'string' || !email.includes('@')) {
     return res.status(400).json({ message: 'Invalid email address.' });
   }
 
-  // Check if tag is already registered
-  const existing = await db.get(tag);
-  if (existing && existing.owner) {
-    return res.status(409).json({ message: 'This tag is already registered.' });
+  try {
+    // Check for existing tag
+    const existing = await kv.get(tag);
+    if (existing) {
+      return res.status(409).json({ message: 'This tag is already registered.' });
+    }
+
+    // Store tag → email mapping
+    await kv.set(tag, email);
+
+    // Send confirmation email
+    await resend.emails.send({
+      from: 'Mojo <hello@mojo.spot>',
+      to: email,
+      subject: 'Your Mojo Tag is now active!',
+      html: `
+        <p>Hello${name ? ` ${name}` : ''},</p>
+        <p>Your Mojo tag <strong>${tag}</strong> has been successfully registered.</p>
+        <p>People can now scan it and send you kind messages.</p>
+        <p>Mojo on ✨</p>
+      `
+    });
+
+    return res.status(200).json({ success: true, message: 'Tag registered and email sent.' });
+  } catch (err) {
+    console.error('[Register Tag Error]', err);
+    return res.status(500).json({ message: 'Internal server error.' });
   }
-
-  // Store pending registration
-  const record = {
-    tag,
-    email,
-    name: name || '',
-    status: 'pending',
-    timestamp: Date.now(),
-  };
-
-  await db.set(tag, record);
-
-  // Generate confirmation URL
-  const confirmUrl = generateMagicLink(tag, email); // e.g., `/confirm.html?token=...`
-
-  // Send confirmation email
-  await resend.emails.send({
-    from: 'Mojo <noreply@mojo.spot>',
-    to: email,
-    subject: 'Confirm your Mojo ID registration',
-    html: `
-      <p>Hello,</p>
-      <p>Click the link below to confirm your Mojo ID registration:</p>
-      <p><a href="${confirmUrl}">Confirm Registration</a></p>
-      <p>If you didn’t request this, you can ignore this email.</p>
-    `,
-  });
-
-  // Redirect to confirmation info page
-  return res.redirect(303, '/confirm.html');
 }
