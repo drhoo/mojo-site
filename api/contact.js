@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     }
 
     // 2. Send email via Resend
-    await resend.emails.send({
+    await resend.sendEmail({
       from: 'Mojo Contact <hello@mojo.spot>',
       to: 'hello@mojo.spot', // your inbox
       reply_to: email,
