@@ -2,7 +2,8 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { Redis } from '@upstash/redis';
-import { resend } from '@/lib/resend';
+import { resend } from '../lib/resend.js';
+
 
 // Supabase setup
 const supabase = createClient(
