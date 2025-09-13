@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Tag • Mojo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <img src="/images/logo.png" alt="Mojo Logo" class="logo" />
+    <div class="site-title">mojo.id</div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="page-title">Mojo ID Lookup</h1>
+    <div id="tag-info" class="tag-box">Loading...</div>
+  </main>
+
+  <footer class="site-footer">
+    <nav>
+      <a href="/">Home</a> | 
+      <a href="/privacy.html">Privacy</a>
+    </nav>
+  </footer>
+
+  <script>
+    async function fetchTagInfo() {
+      const params = new URLSearchParams(window.location.search);
+      const tag = params.get('tag');
+
+      const tagBox = document.getElementById('tag-info');
+
+      if (!tag) {
+        tagBox.innerHTML = "<p>No tag ID provided.</p>";
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/get-tag.js?tag=${encodeURIComponent(tag)}`);
+        const data = await res.json();
+
+        if (!data || !data.success) {
+          tagBox.innerHTML = `<p>Tag not found or unregistered.</p>`;
+        } else {
+          tagBox.innerHTML = `
+            <p><strong>Mojo ID:</strong> ${tag}</p>
+            <p><strong>Status:</strong> Registered</p>
+            <p><strong>Owner Email:</strong> ${data.owner ? data.owner : '(private)'}</p>
+            <p><strong>Registered On:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+          `;
+        }
+      } catch (err) {
+        tagBox.innerHTML = `<p>Error retrieving tag data.</p>`;
+        console.error(err);
+      }
+    }
+
+    fetchTagInfo();
+  </script>
+</body>
+</html>
