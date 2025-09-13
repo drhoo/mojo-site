@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register Your Mojo ID</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <img src="/images/mojo-logo.png" alt="Mojo Logo" class="logo" />
+    <div class="site-title">mojo.id</div>
+  </header>
+
+  <main class="wrap">
+    <h1>Register Your Mojo ID</h1>
+    <p>Enter your Mojo tag and email to activate your profile. We'll send you a confirmation link.</p>
+
+    <form method="POST" action="/api/register-tag.js" class="form">
+      <label for="tag">Mojo ID</label>
+      <input type="text" id="tag" name="tag" placeholder="e.g. MOJ-ABC-123" required />
+
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="name">Optional name or label</label>
+      <input type="text" id="name" name="name" placeholder="e.g. Cafe Mojo Newcastle" />
+
+      <button type="submit">Register Tag</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <a href="/">Home</a>
+    <span class="divider">|</span>
+    <a href="/privacy.html">Privacy</a>
+  </footer>
+</body>
+</html>
