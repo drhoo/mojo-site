@@ -388,3 +388,23 @@ a button:hover {
   content: " | Made in Australia. Built on trust.";
   color: #aaa;
 }
+
+/* ---------- Unified Button Style ---------- */
+.button {
+  display: inline-block;
+  background-color: #0a2b6b;
+  color: white;
+  font-size: 1em;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #08307a;
+  text-decoration: none;
+}
+
