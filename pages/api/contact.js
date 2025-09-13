@@ -1,6 +1,7 @@
 // /pages/api/contact.js
 
-import { resend } from '../../lib/resend';
+import resend from '../lib/resend.js';
+
 import { createClient } from '@supabase/supabase-js';
 
 // Supabase setup
