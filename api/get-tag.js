@@ -1,11 +1,15 @@
-// File: /api/get-tag.js
+// /pages/api/get-tag.js
 
-import { createClient } from '@supabase/supabase-js';
+import { Redis } from '@upstash/redis';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
+// Upstash Redis client
+const kv = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN
+});
+
+// Only allow tags starting with MOJ-
+const isValidMojoTag = (tag) => /^MOJ-[A-Z2-9]{3}-[A-Z2-9]{3}$/.test(tag);
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -14,19 +18,20 @@ export default async function handler(req, res) {
 
   const { tag } = req.query;
 
-  if (!tag || !/^MJO-[A-Z2-9]{3}-[A-Z2-9]{3}$/.test(tag)) {
+  if (!tag || typeof tag !== 'string' || !isValidMojoTag(tag)) {
     return res.status(400).json({ success: false, message: 'Invalid tag format.' });
   }
 
-  const { data, error } = await supabase
-    .from('mojo_tags')
-    .select('tag, workerName')
-    .eq('tag', tag)
-    .single();
+  try {
+    const email = await kv.get(tag);
 
-  if (error || !data) {
-    return res.status(404).json({ success: false, message: 'Tag not found.' });
+    if (!email) {
+      return res.status(404).json({ success: false, message: 'Tag not registered.' });
+    }
+
+    return res.status(200).json({ success: true, email });
+  } catch (err) {
+    console.error('[Upstash Error]', err);
+    return res.status(500).json({ success: false, message: 'Internal error.' });
   }
-
-  return res.status(200).json({ success: true, ...data });
 }
