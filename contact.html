@@ -6,6 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact – Mojo.Spot</title>
   <link rel="stylesheet" href="style.css" />
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('.contact-form');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+          if (data.success) {
+            window.location.href = '/thanks.html';
+          } else {
+            alert(data.error || 'Something went wrong. Please try again.');
+          }
+        } catch (err) {
+          console.error('Contact form error:', err);
+          alert('Network error — please try again.');
+        }
+      });
+    });
+  </script>
 </head>
 <body>
 
@@ -28,7 +58,7 @@
     <h1 class="page-title">Get in Touch</h1>
     <p class="intro">Have a question, idea, or want to use Mojo at your venue? Drop us a line — we’d love to hear from you.</p>
 
-    <form action="mailto:hello@mojo.spot" method="post" enctype="text/plain" class="mojo-form">
+    <form class="contact-form">
       <label for="name">Your Name</label>
       <input type="text" id="name" name="name" placeholder="e.g. Sam" required />
 
