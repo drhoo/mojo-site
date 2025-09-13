@@ -12,21 +12,45 @@
       return id.toUpperCase().replace(/0/g, 'O').replace(/1/g, 'I');
     }
 
-    // On load: Prefill ID from ?id= query
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const rawId = urlParams.get('id');
       if (rawId) {
-        const cleanedId = sanitizeMojoId(rawId);
-        document.getElementById('tag_id').value = cleanedId;
+        document.getElementById('tag_id').value = sanitizeMojoId(rawId);
       }
 
-      // Live sanitize as user types
       const idInput = document.getElementById('tag_id');
       idInput.addEventListener('input', () => {
         const cursor = idInput.selectionStart;
         idInput.value = sanitizeMojoId(idInput.value);
         idInput.setSelectionRange(cursor, cursor);
+      });
+
+      // Handle form submission with fetch()
+      const form = document.querySelector('.mojo-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch('/api/submit-message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+          if (data.success) {
+            window.location.href = '/thanks.html';
+          } else {
+            alert(data.error || 'Something went wrong. Please try again.');
+          }
+        } catch (err) {
+          console.error('Submit error', err);
+          alert('Network error — please try again.');
+        }
       });
     });
   </script>
@@ -52,7 +76,7 @@
     <h1 class="page-title">Send Mojo</h1>
     <p class="intro">Say thanks to someone who made your day better. It only takes a moment.</p>
 
-    <form class="mojo-form" action="/api/submit-message" method="POST">
+    <form class="mojo-form">
       <label for="tag_id">Mojo Tag</label>
       <input type="text" id="tag_id" name="tag_id" placeholder="e.g. MOJ-ABC-123" required />
 
@@ -81,4 +105,3 @@
 
 </body>
 </html>
-
