@@ -1,0 +1,19 @@
+{
+  "name": "mojo-spot",
+  "version": "1.0.0",
+  "description": "A simple, private way to say thanks – built on Mojo.Spot",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "resend": "^0.7.0",
+    "@upstash/redis": "^1.20.1",
+    "@supabase/supabase-js": "^2.39.7"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
